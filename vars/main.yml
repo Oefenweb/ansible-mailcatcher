@@ -1,0 +1,6 @@
+# vars file for mailcatcher
+---
+mailcatcher_dependencies:
+  - ruby
+  - ruby-dev
+  - build-essential
