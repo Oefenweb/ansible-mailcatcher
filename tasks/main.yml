@@ -17,6 +17,8 @@
   gem:
     name: mailcatcher
     version: "{{ mailcatcher_version }}"
+    user_install: false
+    executable: /usr/bin/gem2.0
   when: "mailcatcher_version != 'latest'"
   tags:
     - configuration
@@ -28,6 +30,8 @@
   gem:
     name: mailcatcher
     state: "{{ mailcatcher_version }}"
+    user_install: false
+    executable: /usr/bin/gem2.0
   when: "mailcatcher_version == 'latest'"
   tags:
     - configuration

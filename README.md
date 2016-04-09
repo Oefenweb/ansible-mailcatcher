@@ -6,13 +6,14 @@ Set up (the latest version of) [MailCatcher](http://mailcatcher.me/) in Debian-l
 
 #### Requirements
 
-* `ruby` (will be installed)
-* `ruby-dev` (will be installed)
+* `ruby2.0` (will be installed)
+* `ruby2.0-dev` (will be installed)
+* `libsqlite3-dev` (will be installed)
 * `build-essential` (will be installed)
 
 #### Variables
 
-* `mailcatcher_version`: [default: `latest`]: MailCatcher version to install (e.g. `latest`, `1.9.2`)
+* `mailcatcher_version`: [default: `latest`]: MailCatcher version to install (e.g. `latest`, `0.6.4`)
 
 ## Dependencies
 

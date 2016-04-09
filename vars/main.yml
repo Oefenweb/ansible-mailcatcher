@@ -1,6 +1,7 @@
 # vars file for mailcatcher
 ---
 mailcatcher_dependencies:
-  - ruby
-  - ruby-dev
+  - ruby2.0
+  - ruby2.0-dev
+  - libsqlite3-dev
   - build-essential
