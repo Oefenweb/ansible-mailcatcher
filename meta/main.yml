@@ -16,6 +16,7 @@ galaxy_info:
         - wheezy
         - jessie
   galaxy_tags:
+    - development
     - system
     - networking
 dependencies: []
