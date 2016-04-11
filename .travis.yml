@@ -64,6 +64,13 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  - >
+    netstat -plant || true
+
+  # Test smpt connection
+  - >
+    echo QUIT | nc -q 1 127.0.0.1 1025
+
   # Test smpt connection
   - >
     echo QUIT | nc 127.0.0.1 1025
