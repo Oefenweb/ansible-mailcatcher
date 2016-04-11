@@ -43,6 +43,9 @@ branches:
 before_install:
   - sudo apt-get update -qq
 
+  # Install netcat and wget
+  - sudo apt-get install --yes netcat-traditional wget
+
 install:
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install --no-binary ansible ansible; else pip install --no-binary ansible ansible==$ANSIBLE_VERSION; fi
@@ -60,6 +63,20 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
+  # Test smpt connection
+  - >
+    echo QUIT | nc 127.0.0.1 1025
+    | grep -q '220'
+    && (echo 'Availability test: pass' && exit 0)
+    || (echo 'Availability test: fail' && exit 1)
+
+  # Test http connection
+  - >
+    wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
+    | grep -q '200 OK'
+    && (echo 'Availability test: pass' && exit 0)
+    || (echo 'Availability test: fail' && exit 1)
 
 notifications:
   email: false

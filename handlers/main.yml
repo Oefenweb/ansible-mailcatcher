@@ -1,2 +1,6 @@
 # handlers file for mailcatcher
 ---
+- name: restart mailcatcher
+  service:
+    name: mailcatcher
+    state: restarted

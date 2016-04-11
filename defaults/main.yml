@@ -1,3 +1,9 @@
 # defaults file for mailcatcher
 ---
 mailcatcher_version: latest
+
+mailcatcher_user: mailcatcher
+mailcatcher_group: mailcatcher
+mailcatcher_groups: []
+
+mailcatcher_options: {}

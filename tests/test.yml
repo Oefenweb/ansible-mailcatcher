@@ -5,3 +5,6 @@
   sudo: true
   roles:
     - ../../
+  vars:
+    mailcatcher_options:
+      ip: 0.0.0.0

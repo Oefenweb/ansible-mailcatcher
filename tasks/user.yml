@@ -1,0 +1,22 @@
+# tasks file for mailcatcher
+---
+- name: add group
+  group:
+    name: "{{ item }}"
+  with_flattened:
+    - "{{ mailcatcher_group }}"
+    - "{{ mailcatcher_groups }}"
+  tags:
+    - mailcatcher-user-add
+    - mailcatcher-user-add-group
+
+- name: add user
+  user:
+    name: "{{ mailcatcher_user }}"
+    group: "{{ mailcatcher_group }}"
+    groups: "{{ mailcatcher_groups | join(',') }}"
+    home: /var/mailcatcher
+    shell: /bin/false
+  tags:
+    - mailcatcher-user-add
+    - mailcatcher-user-add-user

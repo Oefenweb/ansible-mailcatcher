@@ -1,0 +1,29 @@
+# {{ ansible_managed }}
+
+# mailcatcher
+
+description "MailCatcher"
+author      "Mischa ter Smitten"
+
+start on net-device-up
+stop on runlevel [01S6]
+
+respawn
+umask 022
+
+pre-start script
+  test -x {{ mailcatcher_daemon }} || { stop; exit 0; }
+
+  install -d -o {{ mailcatcher_user }} -g {{ mailcatcher_group }} -m 0755 {{ mailcatcher_log_file | dirname }} || true
+end script
+
+script
+  exec start-stop-daemon \
+    --start \
+    --chuid {{ mailcatcher_user }} \
+    --make-pidfile \
+    --pidfile {{ mailcatcher_pid_file }} \
+    --exec {{ mailcatcher_daemon }} \
+    -- --foreground{% for key, value in mailcatcher_options.iteritems() %} --{{ key }} {{ value }}{% endfor %} \
+    >> {{ mailcatcher_log_file }} 2>&1
+end script
