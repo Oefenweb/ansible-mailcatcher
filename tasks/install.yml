@@ -10,13 +10,23 @@
   tags:
     - mailcatcher-install-dependencies
 
+- name: install mime-types (< 3)
+  gem:
+    name: mime-types
+    version: '< 3'
+    user_install: false
+  tags:
+    - mailcatcher-install-mime-types
+
 - name: install mailcatcher (specific version)
   gem:
     name: mailcatcher
     version: "{{ mailcatcher_version }}"
     user_install: false
-    executable: /usr/bin/gem2.0
+    build_flags: '--conservative'
+  register: gem_install
   when: "mailcatcher_version != 'latest'"
+  failed_when: false
   tags:
     - mailcatcher-install-specific
 
@@ -25,7 +35,17 @@
     name: mailcatcher
     state: "{{ mailcatcher_version }}"
     user_install: false
-    executable: /usr/bin/gem2.0
+    build_flags: '--conservative'
+  register: gem_install
+  failed_when: false
   when: "mailcatcher_version == 'latest'"
   tags:
     - mailcatcher-install-latest
+
+- name: check installation of mailcatcher
+  shell: echo -e "{{ gem_install.stderr }}" | wc -l
+  register: gem_install_check
+  failed_when: gem_install.rc != 0 or gem_install_check.stdout != '2'
+  when: gem_install | changed
+  tags:
+    - mailcatcher-install-check
