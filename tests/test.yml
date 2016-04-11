@@ -1,0 +1,10 @@
+# test file for mailcatcher
+---
+- hosts: localhost
+  connection: local
+  sudo: true
+  roles:
+    - ../../
+  vars:
+    mailcatcher_options:
+      ip: 0.0.0.0

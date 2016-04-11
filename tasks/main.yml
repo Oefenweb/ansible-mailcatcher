@@ -1,0 +1,19 @@
+# tasks file for mailcatcher
+---
+- include: install.yml
+  tags:
+    - configuration
+    - mailcatcher
+    - mailcatcher-install
+
+- include: user.yml
+  tags:
+    - configuration
+    - mailcatcher
+    - mailcatcher-user
+
+- include: service.yml
+  tags:
+    - configuration
+    - mailcatcher
+    - mailcatcher-service

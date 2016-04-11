@@ -1,0 +1,12 @@
+# vars file for mailcatcher
+---
+mailcatcher_dependencies:
+  - ruby2.0
+  - ruby2.0-dev
+  - libsqlite3-dev
+  - build-essential
+
+mailcatcher_log_file: /var/log/mailcatcher/mailcatcher.log
+mailcatcher_pid_file: /var/run/mailcatcher.pid
+
+mailcatcher_daemon: /usr/local/bin/mailcatcher

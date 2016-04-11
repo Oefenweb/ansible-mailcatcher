@@ -1,0 +1,31 @@
+# tasks file for mailcatcher
+---
+- name: install dependencies
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  with_items: "{{ mailcatcher_dependencies }}"
+  tags:
+    - mailcatcher-install-dependencies
+
+- name: install mailcatcher (specific version)
+  gem:
+    name: mailcatcher
+    version: "{{ mailcatcher_version }}"
+    user_install: false
+    executable: /usr/bin/gem2.0
+  when: "mailcatcher_version != 'latest'"
+  tags:
+    - mailcatcher-install-specific
+
+- name: install mailcatcher (latest version)
+  gem:
+    name: mailcatcher
+    state: "{{ mailcatcher_version }}"
+    user_install: false
+    executable: /usr/bin/gem2.0
+  when: "mailcatcher_version == 'latest'"
+  tags:
+    - mailcatcher-install-latest

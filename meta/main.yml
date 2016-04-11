@@ -1,0 +1,18 @@
+# meta file for mailcatcher
+---
+galaxy_info:
+  author: Mischa ter Smitten
+  company: Oefenweb.nl B.V.
+  description: Set up (the latest version of) MailCatcher in Ubuntu systems
+  license: MIT
+  min_ansible_version: 1.6
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+  galaxy_tags:
+    - development
+    - system
+    - networking
+    - mail
+dependencies: []
