@@ -15,6 +15,12 @@ Set up (the latest version of) [MailCatcher](http://mailcatcher.me/) in Ubuntu s
 
 * `mailcatcher_version`: [default: `latest`]: MailCatcher version to install (e.g. `latest`, `0.6.4`)
 
+* `mailcatcher_user` [default: `mailcatcher`]: The user that will run the `mailcatcher` daemon
+* `mailcatcher_group` [default: `mailcatcher`]: The primary group of the `mailcatcher` user
+* `mailcatcher_groups` [default: `[]`]: The secondary groups of the `mailcatcher` user
+
+* `mailcatcher_options: {}`]: Options to pass the the `mailcatcher` daemon (e.g. `{ip: 0.0.0.0}`)
+
 ## Dependencies
 
 None
@@ -23,13 +29,25 @@ None
 
 None
 
-#### Example
+#### Example (with any options)
 
 ```yaml
 ---
 - hosts: all
   roles:
     - mailcatcher
+```
+
+#### Example (with daemon options)
+
+```yaml
+---
+- hosts: all
+  roles:
+    - mailcatcher
+  vars:
+    mailcatcher_options:
+      ip: 0.0.0.0
 ```
 
 #### License
