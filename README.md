@@ -19,7 +19,7 @@ Set up (the latest version of) [MailCatcher](http://mailcatcher.me/) in Ubuntu s
 * `mailcatcher_group` [default: `mailcatcher`]: The primary group of the `mailcatcher` user
 * `mailcatcher_groups` [default: `[]`]: The secondary groups of the `mailcatcher` user
 
-* `mailcatcher_options: {}`]: Options to pass the the `mailcatcher` daemon (e.g. `{ip: 0.0.0.0}`)
+* `mailcatcher_options: {}`]: Options to pass to the `mailcatcher` daemon (e.g. `{ip: 0.0.0.0}`)
 
 ## Dependencies
 
@@ -29,7 +29,7 @@ None
 
 None
 
-#### Example (with any options)
+#### Example (without any options)
 
 ```yaml
 ---
