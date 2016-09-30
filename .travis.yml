@@ -72,11 +72,15 @@ script:
   # Test smpt connection
   - >
     echo QUIT | nc 127.0.0.1 1025
+  - >
+    echo QUIT | nc 127.0.0.1 1025
     | grep -qi '221 Ok'
     && (echo 'Availability test: pass' && exit 0)
     || (echo 'Availability test: fail' && exit 1)
 
   # Test http connection
+  - >
+    wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
   - >
     wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
     | grep -q '200 OK'
