@@ -72,6 +72,18 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Test
+  - whereis mailcatcher
+  - find ~ -name mailcatcher;
+
+  - sudo netstat -plant
+
+  - sudo initctl status mailcatcher
+  - sudo initctl start mailcatcher
+  - sudo initctl status mailcatcher
+
+  - cat /var/log/mailcatcher/mailcatcher.log
+
   # Test smpt connection
   - >
     echo QUIT | nc 127.0.0.1 1025
