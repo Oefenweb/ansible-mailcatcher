@@ -12,8 +12,28 @@
     - mailcatcher
     - mailcatcher-user
 
-- include: service.yml
+- include: service-upstart.yml
+  when: ansible_distribution_version | version_compare('15.04', '<')
   tags:
     - configuration
     - mailcatcher
     - mailcatcher-service
+    - mailcatcher-service-upstart
+
+- include: service-systemd.yml
+  when: ansible_distribution_version | version_compare('15.04', '>=')
+  tags:
+    - configuration
+    - mailcatcher
+    - mailcatcher-service
+    - mailcatcher-service-systemd
+
+- name: start and enable service
+  service:
+    name: mailcatcher
+    state: started
+    enabled: true
+  tags:
+    - configuration
+    - mailcatcher
+    - mailcatcher-start-enable-service

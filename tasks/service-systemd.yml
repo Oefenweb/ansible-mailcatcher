@@ -1,0 +1,19 @@
+# tasks file for mailcatcher
+---
+- name: service | systemd | update script
+  template:
+    src: templates/lib/systemd/system/mailcatcher.j2
+    dest: /lib/systemd/system/mailcatcher.service
+    owner: root
+    group: root
+    mode: 0644
+  register: _update_systemd_script
+  notify: restart mailcatcher
+  tags:
+    - mailcatcher-service-systemd-update
+
+- name: service | systemd | reload
+  command: systemctl daemon-reload
+  when: _update_systemd_script | changed
+  tags:
+    - mailcatcher-service-systemd-reload

@@ -1,0 +1,24 @@
+; {{ ansible_managed }}
+
+[Unit]
+Description=MailCatcher
+After=network.target
+
+[Service]
+Type=simple
+PermissionsStartOnly=true
+ExecStartPre=/usr/bin/test -x {{ mailcatcher_daemon }}
+ExecStartPre=/usr/bin/install -d \
+  -o {{ mailcatcher_user }} \
+  -g {{ mailcatcher_group }} \
+  -m 0755 \
+  {{ mailcatcher_log_file | dirname }}
+ExecStart=/bin/sh -c \
+  '{{ mailcatcher_daemon }} --foreground{% for key, value in mailcatcher_options.iteritems() %} -{{ key }} {{ value }}{% endfor %} >> {{ mailcatcher_log_file }} 2>&1'
+PIDFile={{ mailcatcher_pid_file }}
+Restart=always
+User={{ mailcatcher_user }}
+Group={{ mailcatcher_group }}
+
+[Install]
+WantedBy=multi-user.target
