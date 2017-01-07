@@ -3,16 +3,8 @@
 - hosts: localhost
   connection: local
   sudo: true
-  pre_tasks:
-    - name: pre | symlink mailcatcher to where it normally would be installed
-      file:
-        src: /home/travis/.rvm/gems/ruby-2.3.1/bin/mailcatcher
-        dest: "{{ mailcatcher_daemon }}"
-        state: link
-        force: true
   roles:
     - ../../
   vars:
-    mailcatcher_daemon: /home/travis/.rvm/gems/ruby-2.3.1/bin/mailcatcher
     mailcatcher_options:
       ip: 0.0.0.0

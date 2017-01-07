@@ -54,6 +54,9 @@ before_install:
   # Install netcat and wget
   - sudo apt-get install --yes netcat-traditional wget
 
+  - rvm reset
+  - rvm use system
+
 install:
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install --no-binary ansible ansible; else pip install --no-binary ansible ansible==$ANSIBLE_VERSION; fi
@@ -72,21 +75,7 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Test
-  - whereis mailcatcher
-  - find ~ -name mailcatcher -exec ls {} \
-
-  - sudo netstat -plant
-
-  - sudo initctl status mailcatcher
-  - sudo initctl start mailcatcher
-  - sudo initctl status mailcatcher
-
-  - cat /var/log/mailcatcher/mailcatcher.log
-
   # Test smpt connection
-  - >
-    echo QUIT | nc 127.0.0.1 1025
   - >
     echo QUIT | nc 127.0.0.1 1025
     | grep -qi '221 Ok'
@@ -94,8 +83,6 @@ script:
     || (echo 'Availability test: fail' && exit 1)
 
   # Test http connection
-  - >
-    wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
   - >
     wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
     | grep -q '200 OK'
