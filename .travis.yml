@@ -54,6 +54,10 @@ before_install:
   # Install netcat and wget
   - sudo apt-get install --yes netcat-traditional wget
 
+  # Needed to force a system install
+  - rvm reset
+  - rvm use system
+
 install:
   # Install Ansible.
   - if [ "$ANSIBLE_VERSION" = "latest" ]; then pip install --no-binary ansible ansible; else pip install --no-binary ansible ansible==$ANSIBLE_VERSION; fi
