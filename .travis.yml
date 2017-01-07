@@ -74,7 +74,7 @@ script:
 
   # Test
   - whereis mailcatcher
-  - find ~ -name mailcatcher;
+  - find ~ -name mailcatcher -exec ls {} \
 
   - sudo netstat -plant
 
