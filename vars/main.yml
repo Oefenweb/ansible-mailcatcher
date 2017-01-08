@@ -1,6 +1,5 @@
 # vars file for mailcatcher
 ---
-mailcatcher_ruby_minor_version: "{{ 3 if (ansible_distribution_version | version_compare('16.04', '>=')) else 0 }}"
 mailcatcher_dependencies:
   - "ruby2.{{ mailcatcher_ruby_minor_version }}"
   - "ruby2.{{ mailcatcher_ruby_minor_version }}-dev"
