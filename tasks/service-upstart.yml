@@ -1,0 +1,12 @@
+# tasks file for mailcatcher
+---
+- name: service | upstart | update script
+  template:
+    src: etc/init/mailcatcher.conf.j2
+    dest: /etc/init/mailcatcher.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart mailcatcher
+  tags:
+    - mailcatcher-service-upstart-update
