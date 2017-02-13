@@ -7,6 +7,3 @@ mailcatcher_group: mailcatcher
 mailcatcher_groups: []
 
 mailcatcher_options: {}
-
-#TODO: In Ansible > 1.7.2 this can be moved to vars/defaults.yml
-mailcatcher_ruby_minor_version: "{{ 3 if (ansible_distribution_version | version_compare('16.04', '>=')) else 0 }}"
