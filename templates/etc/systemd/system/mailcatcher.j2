@@ -14,7 +14,7 @@ ExecStartPre=/usr/bin/install -d \
   -m 0755 \
   {{ mailcatcher_log_file | dirname }}
 ExecStart=/bin/sh -c \
-  '{{ mailcatcher_daemon }} --foreground{% for key, value in mailcatcher_options.iteritems() %} --{{ key }} {{ value }}{% endfor %} >> {{ mailcatcher_log_file }} 2>&1'
+  '{{ mailcatcher_daemon }} --foreground{% for key, value in mailcatcher_options.items() %} --{{ key }} {{ value }}{% endfor %} >> {{ mailcatcher_log_file }} 2>&1'
 
 PIDFile={{ mailcatcher_pid_file }}
 Restart=always
