@@ -1,6 +1,7 @@
 # meta file for mailcatcher
 ---
 galaxy_info:
+  role_name: mailcatcher
   author: Mischa ter Smitten
   company: Oefenweb.nl B.V.
   description: Set up (the latest version of) MailCatcher in Ubuntu systems
