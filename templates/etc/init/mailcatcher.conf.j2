@@ -24,6 +24,6 @@ script
     --make-pidfile \
     --pidfile {{ mailcatcher_pid_file }} \
     --exec {{ mailcatcher_daemon }} \
-    -- --foreground{% for key, value in mailcatcher_options.iteritems() %} --{{ key }} {{ value }}{% endfor %} \
+    -- --foreground{% for key, value in mailcatcher_options.items() %} --{{ key }} {{ value }}{% endfor %} \
     >> {{ mailcatcher_log_file }} 2>&1
 end script
