@@ -11,3 +11,6 @@ mailcatcher_log_file: /var/log/mailcatcher/mailcatcher.log
 mailcatcher_pid_file: /var/run/mailcatcher.pid
 
 mailcatcher_daemon: /usr/local/bin/mailcatcher
+
+mailcatcher_etc_systemd_file: /etc/systemd/system/mailcatcher.service
+mailcatcher_etc_init_file: /etc/init/mailcatcher.conf

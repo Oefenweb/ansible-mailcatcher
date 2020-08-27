@@ -2,8 +2,8 @@
 ---
 - name: service | systemd | update script
   template:
-    src: etc/systemd/system/mailcatcher.j2
-    dest: /etc/systemd/system/mailcatcher.service
+    src: "{{ mailcatcher_etc_systemd_file.lstrip('/') }}.j2"
+    dest: "{{ mailcatcher_etc_systemd_file }}"
     owner: root
     group: root
     mode: 0644
@@ -13,7 +13,8 @@
     - mailcatcher-service-systemd-update
 
 - name: service | systemd | reload
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: true
   when: _update_systemd_script is changed
   tags:
     - mailcatcher-service-systemd-reload

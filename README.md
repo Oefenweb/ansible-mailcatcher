@@ -1,6 +1,7 @@
 ## mailcatcher
 
-[![Build Status](https://travis-ci.org/Oefenweb/ansible-mailcatcher.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-mailcatcher) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-mailcatcher-blue.svg)](https://galaxy.ansible.com/Oefenweb/mailcatcher/)
+[![Build Status](https://travis-ci.org/Oefenweb/ansible-mailcatcher.svg?branch=master)](https://travis-ci.org/Oefenweb/ansible-mailcatcher)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-mailcatcher-blue.svg)](https://galaxy.ansible.com/Oefenweb/mailcatcher/)
 
 Set up (the latest version of) [MailCatcher](http://mailcatcher.me/) in Ubuntu systems.
 
