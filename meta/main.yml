@@ -12,6 +12,8 @@ galaxy_info:
       versions:
         - trusty
         - xenial
+        - bionic
+        - focal
   galaxy_tags:
     - development
     - system
