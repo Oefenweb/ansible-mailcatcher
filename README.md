@@ -7,8 +7,8 @@ Set up (the latest version of) [MailCatcher](http://mailcatcher.me/) in Ubuntu s
 
 #### Requirements
 
-* `ruby2.0` (will be installed)
-* `ruby2.0-dev` (will be installed)
+* `ruby2.*` (will be installed)
+* `ruby2.*-dev` (will be installed)
 * `libsqlite3-dev` (will be installed)
 * `build-essential` (will be installed)
 
