@@ -1,4 +1,4 @@
-# tasks file for mailcatcher
+# tasks file
 ---
 - include: install.yml
   tags:

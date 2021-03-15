@@ -1,4 +1,4 @@
-# handlers file for mailcatcher
+# handlers file
 ---
 - name: restart mailcatcher
   service:

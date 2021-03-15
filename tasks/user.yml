@@ -1,4 +1,4 @@
-# tasks file for mailcatcher
+# tasks file
 ---
 - name: add group
   group:
