@@ -9,26 +9,22 @@
     update_cache: true
     cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
 
-- name: test smtp installation
+- name: test smtp installation  # noqa command-instead-of-module
   shell: >
     echo QUIT | nc -q 1 127.0.0.1 1025
     | grep -qi '221 Ok'
     && (echo 'Availability test: pass' && exit 0)
     || (echo 'Availability test: fail' && exit 1)
-  args:
-    warn: false
   changed_when: false
   tags:
     - skip_ansible_lint
 
-- name: test http installation
+- name: test http installation  # noqa command-instead-of-module
   shell: >
     wget http://127.0.0.1:1080/ -O /dev/null -S --quiet 2>&1
     | grep -q '200 OK'
     && (echo 'Availability test: pass' && exit 0)
     || (echo 'Availability test: fail' && exit 1)
-  args:
-    warn: false
   changed_when: false
   tags:
     - skip_ansible_lint
