@@ -1,18 +1,21 @@
 # tasks file
 ---
-- include: install.yml
+- name: install
+  ansible.builtin.import_tasks: install.yml
   tags:
     - configuration
     - mailcatcher
     - mailcatcher-install
 
-- include: user.yml
+- name: user
+  ansible.builtin.import_tasks: user.yml
   tags:
     - configuration
     - mailcatcher
     - mailcatcher-user
 
-- include: service-upstart.yml
+- name: upstart
+  ansible.builtin.import_tasks: service-upstart.yml
   when: ansible_service_mgr != 'systemd'
   tags:
     - configuration
@@ -20,7 +23,8 @@
     - mailcatcher-service
     - mailcatcher-service-upstart
 
-- include: service-systemd.yml
+- name: systemd
+  ansible.builtin.import_tasks: service-systemd.yml
   when: ansible_service_mgr == 'systemd'
   tags:
     - configuration
@@ -29,7 +33,7 @@
     - mailcatcher-service-systemd
 
 - name: start and enable service
-  service:
+  ansible.builtin.service:
     name: mailcatcher
     state: "{{ service_default_state | default('started') }}"
     enabled: "{{ service_default_enabled | default(true) | bool }}"
