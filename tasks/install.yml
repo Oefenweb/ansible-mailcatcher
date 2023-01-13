@@ -1,7 +1,7 @@
 # tasks file
 ---
-- name: install dependencies
-  apt:
+- name: install dependencies  # noqa args[module]
+  ansible.builtin.apt:
     name: "{{ mailcatcher_dependencies }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -9,8 +9,8 @@
   tags:
     - mailcatcher-install-dependencies
 
-- name: install mailcatcher (specific version)
-  gem:
+- name: install mailcatcher (specific version)  # noqa args[module]
+  community.general.gem:
     name: mailcatcher
     version: "{{ mailcatcher_version }}"
     user_install: false
@@ -19,8 +19,8 @@
   tags:
     - mailcatcher-install-specific
 
-- name: install mailcatcher (latest version)
-  gem:
+- name: install mailcatcher (latest version)  # noqa args[module]
+  community.general.gem:
     name: mailcatcher
     state: "{{ mailcatcher_version }}"
     user_install: false
