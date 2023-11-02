@@ -36,7 +36,7 @@ None
 ---
 - hosts: all
   roles:
-    - mailcatcher
+    - oefenweb.mailcatcher
 ```
 
 #### Example (with daemon options)
@@ -45,7 +45,7 @@ None
 ---
 - hosts: all
   roles:
-    - mailcatcher
+    - oefenweb.mailcatcher
   vars:
     mailcatcher_options:
       ip: 0.0.0.0
