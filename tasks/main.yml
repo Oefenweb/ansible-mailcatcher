@@ -16,7 +16,7 @@
 
 - name: upstart
   ansible.builtin.import_tasks: service-upstart.yml
-  when: ansible_service_mgr != 'systemd'
+  when: ansible_facts['service_mgr'] != 'systemd'
   tags:
     - configuration
     - mailcatcher
@@ -25,7 +25,7 @@
 
 - name: systemd
   ansible.builtin.import_tasks: service-systemd.yml
-  when: ansible_service_mgr == 'systemd'
+  when: ansible_facts['service_mgr'] == 'systemd'
   tags:
     - configuration
     - mailcatcher
